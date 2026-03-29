@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tridalworld | Dynamic Website</title>
+    
+    <style>
+        /* Base Styling */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f8f9fa; }
+        header { background: #007bff; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        nav .logo { font-size: 1.8em; font-weight: bold; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: white; text-decoration: none; transition: color 0.3s; }
+        .cta-button { background: #ffc107; color: #333; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s, transform 0.2s; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section:nth-child(even) { background-color: #f0f2f5; }
+        h2 { text-align: center; margin-bottom: 40px; color: #007bff; font-size: 2.5em; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
+        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
+        footer { background: #333; color: white; padding: 40px 20px; text-align: center; }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Applying Animations */
+        .headline-animate { animation: fadeIn 1.5s ease-out; }
+        .cta-animate { animation: pulse 2s infinite; }
+        .product-card-container .card { animation: scaleUp 0.8s ease-out backwards; margin-bottom: 20px; }
+        .product-card-container .card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card-container .card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card-container .card:nth-child(3) { animation-delay: 0.3s; }
+
+        /* Updated Hero Video Styling */
+        .hero-graphic { 
+            background: #000; 
+            height: 450px; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            position: relative;
+            margin-bottom: 40px; 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+        }
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures video fills the frame */
+        }
+        .kitchen-texture { background-color: #f0f2f5; border: 2px dashed #8b4513; padding: 20px; border-radius: 10px; margin-top: 20px; }
+        .service-icon { font-size: 2.5em; margin-right: 15px; color: #ffc107; }
+
+        /* Color Coding for Product Sections */
+        .product-card-1 { border-left: 5px solid #007bff; } 
+        .product-card-2 { border-left: 5px solid #ff7f00; } 
+        .product-card-3 { border-left: 5px solid #28a745; } 
+        .product-card-4 { border-left: 5px solid #6f42c1; } 
+        .product-card-5 { border-left: 5px solid #8b4513; } 
+        .product-card-6 { border-left: 5px solid #dc3545; } 
+        .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+        }
+.hero-graphic {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Tridalworld</div>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#design-services">Design</a></li>
+                <li><a href="#pure-kitchen">Kitchen</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button cta-animate">Wholesale Inquiry</a>
+        </nav>
+    </header>
+
+    <section id="home" class="section" style="text-align: center;">
+    <!-- <div class="slider">
+        <img src="img2.jpeg" class="slide active">
+        <img src="img3.jpeg" class="slide">
+        <img src="img4.jpeg" class="slide">
+    </div> -->
+
+    </div>
+</div>
+        
+        <h1 class="headline-animate" style="font-size: 3.5em; color: #007bff;">Tridalworld: Innovation, Purity, and Reliability.</h1>
+        <p style="font-size: 1.3em;">Your Partner in Products & Professional Design.</p>
+        <a href="#products" class="cta-button cta-animate" style="margin: 30px auto;">Explore Our Catalog</a>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title">🌐 About Tridalworld</h2>
+        <p>Tridalworld is a professionally managed, multi-category enterprise engaged in the import, wholesale distribution, and retail of electrical, electronic, lifestyle, household, and pure traditional kitchen products.</p>
+        <p>Along with product trading, the company offers advanced Fabric Design, CAD Drafting, Automation Design, and Architectural Design Support, making it a versatile and future-ready organization.</p>
+        <p>Tridalworld is proudly **GST-Registered & MSME-Certified**, ensuring compliance, reliability, and authenticity in every business process.</p>
+
+        <h3 style="color: #007bff; border: none; font-size: 1.5em; margin-top: 40px;">⭐ Why Customers Trust Tridalworld</h3>
+        <div class="grid-3 product-card-container">
+            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">✅</span><strong>GST & MSME Registered</strong></div>
+            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🤝</span>Ethical & Transparent Business Model</div>
+            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🔝</span>High-Quality Multi-Category Products</div>
+            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🍃</span>100% Pure and Authentic Food Essentials</div>
+            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🚚</span>Reliable Import and Distribution Network</div>
+            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">📐</span>Professional Design & Engineering Services</div>
+        </div>
+
+        <div class="grid-3" style="margin-top: 60px;">
+            <div class="card">
+                <h3 style="display: flex; align-items: center;"><span class="service-icon">🎯</span>Vision</h3>
+                <p>To become a nationally trusted multi-category brand delivering innovation, purity, and reliability across products and design services—enhancing everyday living with quality and value.</p>
+            </div>
+            <div class="card" style="grid-column: span 2;">
+                <h3 style="display: flex; align-items: center;"><span class="service-icon">🚀</span>Mission</h3>
+                <ul style="list-style: disc; padding-left: 20px;">
+                    <li>To provide customers with a wide, reliable, and affordable range of products.</li>
+                    <li>To support retailers and wholesalers through transparent sourcing.</li>
+                    <li>To deliver professional-grade design services with accuracy and precision.</li>
+                    <li>To promote 100% pure, chemical-free Indian kitchen essentials.</li>
+                    <li>To maintain strong customer relationships through quick service.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section">
+        <h2 class="section-title">🛍️ Our Product Portfolio</h2>
+        <div class="grid-3 product-card-container">
+            <div class="card product-card-1">
+                <h3 style="color: #007bff;">🟦 Electrical & Electronic Products</h3>
+                <ul><li>LED Bulbs & Strips</li><li>Switches & Sockets</li><li>Power Adapters & Chargers</li><li>Wires & Cables</li><li>Mini Fans & Appliances</li></ul>
+            </div>
+            <div class="card product-card-2">
+                <h3 style="color: #ff7f00;">🟧 Mobile & Smart Accessories</h3>
+                <ul><li>Earbuds & Headphones</li><li>Bluetooth Speakers</li><li>Smart Watches</li><li>Power Banks</li><li>Mobile Holders</li></ul>
+            </div>
+            <div class="card product-card-3">
+                <h3 style="color: #28a745;">🟩 Consumer Electronics</h3>
+                <ul><li>Desk Lamps</li><li>Portable Speakers</li><li>Rechargeable Bulbs</li><li>Smart Gadgets</li><li>Digital Clocks</li></ul>
+            </div>
+            <div class="card product-card-4">
+                <h3 style="color: #6f42c1;">🟪 Musical Instruments & Accessories</h3>
+                <ul><li>Acoustic Guitars</li><li>Traditional Indian Instruments</li><li>Musical Accessories</li><li>Electronic Musical Toys</li></ul>
+            </div>
+            <div class="card product-card-5">
+                <h3 style="color: #8b4513;">🟫 Household & Daily-Use Products</h3>
+                <ul><li>Water Bottles</li><li>Lunch Boxes</li><li>Storage Containers</li><li>Cleaning Essentials</li><li>Basic Home Utility Tools</li></ul>
+            </div>
+            <div class="card product-card-6">
+                <h3 style="color: #dc3545;">🟥 Battery-Operated & Educational Toys</h3>
+                <ul><li>Battery Cars & Bikes</li><li>Musical Toys</li><li>Remote Control Toys</li><li>Learning & Educational Toys</li></ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="design-services" class="section">
+        <h2 class="section-title">🎨 Design & Engineering Services</h2>
+        <p style="text-align: center;">Tridalworld provides advanced, reliable, and precise design solutions for industries, developers, and manufacturers:</p>
+
+        <ul class="grid-3 product-card-container" style="list-style: none; padding: 0;">
+            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">🧵</span>Fabric Design & Layout Planning</h4></li>
+            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">✏️</span>2D & 3D CAD Drawing</h4></li>
+            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">⚙️</span>Automation Design & Control Planning</h4></li>
+            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">🏛️</span>Architectural Design Support</h4></li>
+            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">👓</span>3D Visualization Assistance</h4></li>
+            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">📋</span>Product Concept & Design Documentation</h4></li>
+        </ul>
+        <p style="text-align: center; margin-top: 30px; font-weight: bold;">These services ensure accuracy, modern standards, and professional output for every project.</p>
+    </section>
+
+   
+<section id="industrial" class="section">
+    <h2 class="section-title">⚡ Industrial Electrical Products</h2>
+
+    <div class="grid-3 product-card-container">
+
+        <div class="card product-card-1">
+            <img src="image100.jpeg"
+     style="width:100%; height:250px; object-fit:cover; border-radius:4px; margin-bottom:15px;">
+
+            <h3>🔌 LT Switchgear Panel</h3>
+            <ul>
+                <li>LT Switchgear Panel</li>
+                <li>Electrical Control Panels</li>
+                <li>Distribution Boards</li>
+                <li>MCB / MCCB Panels</li>
+            </ul>
+        </div>
+
+        <div class="card product-card-2">
+              <img src="Lt.jpeg"
+     style="width:100%; height:250px; object-fit:cover; border-radius:4px; margin-bottom:15px;">
+            <h3>⚡ Earthing & Lightning Protection</h3>
+            <ul>
+                <li>GI Copper Rod</li>
+                <li>Lightning Arrester</li>
+                <li>Black Fill Compound</li>
+                <li>Earthing Electrode</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+            <div class="grid-3 product-card-container">
+                <div class="card">
+                    <h3 style="display: flex; align-items: center; color: #8b4513;"><span class="service-icon">🌾</span>Premium Spices (Masala)</h3>
+                    <ul><li>Turmeric Powder</li><li>Coriander Powder</li><li>Red Chilli Powder</li><li>Garam Masala</li><li>Cumin Seeds (Jeera)</li><li>Black Salt</li></ul>
+                </div>
+                <div class="card">
+                    <h3 style="display: flex; align-items: center; color: #8b4513;"><span class="service-icon">🍚</span>Food Grains & Essentials</h3>
+                    <ul><li>Wheat Flour (Atta)</li><li>Pure Rice, Kala Namak Rice</li><li>Arhar Dal, Moong Dal, Chana Dal</li><li>Bajra (Pearl Millet)</li></ul>
+                </div>
+                <div class="card">
+                    <h3 style="display: flex; align-items: center; color: #8b4513;"><span class="service-icon">🍯</span>Traditional Pure Products</h3>
+                    <ul><li>Desi Ghee</li><li>Mustard Oil</li><li>Jaggery (Gud)</li><li>Jaggery-Based Products</li><li>Mango Papad</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section" style="text-align: center;">
+        <h2 class="section-title">📞 Contact Tridalworld</h2>
+        <div class="grid-3" style="grid-template-columns: 1fr 1fr; max-width: 800px; margin: 0 auto; text-align: left;">
+            <div class="card">
+                <h3>Company Information</h3>
+                <p><strong>Company Name:</strong> Tridalworld</p>
+                <p><strong>Proprietor:</strong> Mr. Aditya Dwivedi</p>
+                <p><strong>Contact Number:</strong> 8707615640</p>
+                <p><strong>Email:</strong> <a href="mailto:adi@gmail.com">adityadwivedi4701@gmail.com</a></p>
+                <p><strong>Office Address:</strong> 4D/141 Awash Vikas, Naubasta, Kanpur</p>
+            </div>
+            <div class="card">
+                <h3>Send Us a Message</h3>
+                <form id = "contactForm" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input id="name" type="text" placeholder="Your Name" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input id="phone" type="tel" placeholder="Your Phone Number" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input id="email" type="email" placeholder="Your Email" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <textarea id="message" placeholder="Your Message / Inquiry" rows="4" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+                    <button type="submit" class="cta-button" style="padding: 10px; border: none; cursor: pointer; background: #007bff; color: white;">Submit Inquiry</button>
+                    <p id="msg"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Tridalworld. All rights reserved. | GST & MSME Certified</p>
+    </footer>
+
+<p id="msg"></p>
+
+<script src="script.js"></script>
+
+
+</body>
+</html
