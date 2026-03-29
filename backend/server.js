@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 
 const app = express();
 
@@ -12,10 +13,10 @@ app.use(express.json());
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log("DB Error:", err.message));
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.log("❌ DB Error:", err.message));
 
-// Schema (INSIDE server.js)
+// Schema
 const contactSchema = new mongoose.Schema(
   {
     name: String,
@@ -28,35 +29,69 @@ const contactSchema = new mongoose.Schema(
 
 const Contact = mongoose.model("Contact", contactSchema);
 
-// API
-app.post("/api/contact", async (req, res) => {
-  try {
-    console.log("Incoming data:", req.body);
+// ================= EMAIL SETUP =================
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
-    const contact = new Contact({
-      name: req.body.name,
-      phone: req.body.phone,
-      email: req.body.email,
-      message: req.body.message,
-    });
-
-    await contact.save();
-
-    res.status(201).json({ message: "Inquiry submitted successfully" });
-  } catch (err) {
-    console.error("CONTACT SAVE ERROR:", err.message);
-    res.status(500).json({ message: err.message });
+// Optional: verify transporter
+transporter.verify((error, success) => {
+  if (error) {
+    console.log("❌ Email server error:", error);
+  } else {
+    console.log("✅ Email server ready");
   }
 });
 
+// ================= API =================
+app.post("/api/contact", async (req, res) => {
+  try {
+    const { name, email, phone, message } = req.body;
 
-// Test route (VERY IMPORTANT)
-app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
+    console.log("📩 Incoming data:", req.body);
+
+    // 1. Save to MongoDB
+    const contact = new Contact({ name, email, phone, message });
+    await contact.save();
+
+    // 2. Send Email
+    await transporter.sendMail({
+      from: `"Website Contact" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER, // your domain email
+      subject: "📩 New Contact Form Submission",
+      text: `
+New Inquiry Received:
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Message: ${message}
+      `,
+    });
+
+    res.status(201).json({
+      message: "✅ Message sent & saved successfully",
+    });
+
+  } catch (err) {
+    console.error("❌ ERROR:", err.message);
+    res.status(500).json({
+      message: "❌ Something went wrong",
+    });
+  }
 });
 
-// Server
+// ================= TEST ROUTE =================
+app.get("/", (req, res) => {
+  res.send("🚀 Backend is running");
+});
+
+// ================= SERVER =================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
