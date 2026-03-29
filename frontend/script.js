@@ -8,7 +8,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
     const msg = document.getElementById("msg");
 
     try {
-        const response = await fetch("https://cluster-backend-grr9.onrender.com/api/contact", {
+        const response = await fetch("https://tridalfinal.onrender.com/api/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
