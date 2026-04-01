@@ -3,6 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const app = express();
 
@@ -63,10 +65,10 @@ app.post("/api/contact", async (req, res) => {
     const contact = new Contact({ name, email, phone, message });
     await contact.save();
 
-    // 2. Send Email
-    await transporter.sendMail({
-      from: `"Website Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // your domain email
+    // 2. Send Email using Resend
+    await resend.emails.send({
+      from: "Tridalworld <contact@tridalworld.com>",
+      to: "contact@tridalworld.com", // 👈 your business email
       subject: "📩 New Contact Form Submission",
       text: `
 New Inquiry Received:
@@ -82,12 +84,12 @@ Message: ${message}
       message: "✅ Message sent & saved successfully",
     });
 
-  }catch (err) {
-  console.error("❌ FULL ERROR:", err);
-  res.status(500).json({
-    message: "❌ Something went wrong",
-  });
-}
+  } catch (err) {
+    console.error("❌ FULL ERROR:", err);
+    res.status(500).json({
+      message: "❌ Something went wrong",
+    });
+  }
 });
 
 // ================= TEST ROUTE =================
