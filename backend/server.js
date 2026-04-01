@@ -38,6 +38,9 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 // Optional: verify transporter
@@ -79,12 +82,12 @@ Message: ${message}
       message: "✅ Message sent & saved successfully",
     });
 
-  } catch (err) {
-    console.error("❌ ERROR:", err.message);
-    res.status(500).json({
-      message: "❌ Something went wrong",
-    });
-  }
+  }catch (err) {
+  console.error("❌ FULL ERROR:", err);
+  res.status(500).json({
+    message: "❌ Something went wrong",
+  });
+}
 });
 
 // ================= TEST ROUTE =================
