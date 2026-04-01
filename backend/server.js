@@ -2,11 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const nodemailer = require("nodemailer");
 const { Resend } = require("resend");
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const app = express();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Middleware
 app.use(cors());
@@ -31,29 +30,6 @@ const contactSchema = new mongoose.Schema(
 
 const Contact = mongoose.model("Contact", contactSchema);
 
-// ================= EMAIL SETUP =================
-const transporter = nodemailer.createTransport({
-  host: "smtp.office365.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
-
-// Optional: verify transporter
-transporter.verify((error, success) => {
-  if (error) {
-    console.log("❌ Email server error:", error);
-  } else {
-    console.log("✅ Email server ready");
-  }
-});
-
 // ================= API =================
 app.post("/api/contact", async (req, res) => {
   try {
@@ -66,9 +42,9 @@ app.post("/api/contact", async (req, res) => {
     await contact.save();
 
     // 2. Send Email using Resend
-    await resend.emails.send({
+    const response = await resend.emails.send({
       from: "Tridalworld <contact@tridalworld.com>",
-      to: "contact@tridalworld.com", // 👈 your business email
+      to: "contact@tridalworld.com",
       subject: "📩 New Contact Form Submission",
       text: `
 New Inquiry Received:
@@ -79,6 +55,8 @@ Email: ${email}
 Message: ${message}
       `,
     });
+
+    console.log("📧 Resend Response:", response);
 
     res.status(201).json({
       message: "✅ Message sent & saved successfully",
