@@ -53,3 +53,17 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(showSlide, 3000); // auto change every 3 sec
 
 });
+vwindow.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("hero-logo").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+  }, 2500); // 2.5 seconds
+});
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
