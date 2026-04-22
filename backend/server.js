@@ -2,10 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const { Resend } = require("resend");
-
 const app = express();
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Middleware
 app.use(cors());
@@ -41,22 +38,35 @@ app.post("/api/contact", async (req, res) => {
     const contact = new Contact({ name, email, phone, message });
     await contact.save();
 
-    // 2. Send Email using Resend
-    const response = await resend.emails.send({
-      from: "Tridalworld <contact@tridalworld.com>",
-      to: "contact@tridalworld.com",
-      subject: "📩 New Contact Form Submission",
+    // 2. Send Email using Nodemailer
+    const nodemailer = require("nodemailer");
+
+    const transporter = nodemailer.createTransport({
+      host: "smtpout.secureserver.net", // Typical GoDaddy SMTP server. Change to mail.tridalworld.com if this fails.
+      port: 465, // SSL
+      secure: true,
+      auth: {
+        user: "aditya@tridalworld.com",
+        pass: "8707615640",
+      },
+    });
+
+    const mailOptions = {
+      from: "aditya@tridalworld.com", // Must match the authenticated user
+      to: "aditya@tridalworld.com", // The email receiving the inquiries
+      subject: "📩 New Tridalworld Inquiry",
       text: `
-New Inquiry Received:
+You have a new inquiry from the website!
 
 Name: ${name}
 Phone: ${phone}
 Email: ${email}
 Message: ${message}
       `,
-    });
+    };
 
-    console.log("📧 Resend Response:", response);
+    const info = await transporter.sendMail(mailOptions);
+    console.log("📧 Email sent successfully:", info.response);
 
     res.status(201).json({
       message: "✅ Message sent & saved successfully",

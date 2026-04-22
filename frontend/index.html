@@ -1,413 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tridalworld | Dynamic Website</title>
+    <title>Tridalworld | Premium Electrical Instruments</title>
     <link rel="icon" type="image/png" href="mainlogo.png">
     
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
     
-    <style>
-        @media (max-width: 768px) {
-
-    .hero-content h1 {
-        font-size: 2em;
-        padding: 0 10px;
-    }
-
-    .hero-content p {
-        font-size: 1em;
-        padding: 0 10px;
-    }
-
-    .cta-button {
-        padding: 10px 15px;
-        font-size: 0.9em;
-    }
-}
-@media (max-width: 768px) {
-
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .cta-button {
-        margin-top: 10px;
-    }
-}
-@media (max-width: 768px) {
-    .grid-3 {
-        grid-template-columns: 1fr;
-    }
-}
-        /* Base Styling */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f8f9fa; }
-        header { background: #007bff; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        nav .logo { font-size: 1.8em; font-weight: bold; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { color: white; text-decoration: none; transition: color 0.3s; }
-        .cta-button { background: #ffc107; color: #333; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s, transform 0.2s; }
-        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
-        .section:nth-child(even) { background-color: #f0f2f5; }
-        h2 { text-align: center; margin-bottom: 40px; color: #007bff; font-size: 2.5em; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
-        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
-        footer { background: #333; color: white; padding: 40px 20px; text-align: center; }
-
-        /* Animation Keyframes */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
-        }
-        @keyframes scaleUp {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Applying Animations */
-        .headline-animate { animation: fadeIn 1.5s ease-out; }
-        .cta-animate { animation: pulse 2s infinite; }
-        .product-card-container .card { animation: scaleUp 0.8s ease-out backwards; margin-bottom: 20px; }
-        .product-card-container .card:nth-child(1) { animation-delay: 0.1s; }
-        .product-card-container .card:nth-child(2) { animation-delay: 0.2s; }
-        .product-card-container .card:nth-child(3) { animation-delay: 0.3s; }
-
-        /* Updated Hero Video Styling */
-        .hero-graphic { 
-            background: #000; 
-            height: 450px; 
-            border-radius: 10px; 
-            overflow: hidden; 
-            position: relative;
-            margin-bottom: 40px; 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-        }
-        .hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures video fills the frame */
-        }
-        .kitchen-texture { background-color: #f0f2f5; border: 2px dashed #8b4513; padding: 20px; border-radius: 10px; margin-top: 20px; }
-        .service-icon { font-size: 2.5em; margin-right: 15px; color: #ffc107; }
-
-        /* Color Coding for Product Sections */
-        .product-card-1 { border-left: 5px solid #007bff; } 
-        .product-card-2 { border-left: 5px solid #ff7f00; } 
-        .product-card-3 { border-left: 5px solid #28a745; } 
-        .product-card-4 { border-left: 5px solid #6f42c1; } 
-        .product-card-5 { border-left: 5px solid #8b4513; } 
-        .product-card-6 { border-left: 5px solid #dc3545; } 
-        .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-        }
-.hero-graphic {
-    position: relative;
-    height: 450px;
-    overflow: hidden;
-}
-
-.slider {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-    opacity: 1;
-}
-.hero {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Slider images */
-.slider {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 33%;
-    background-color: black; /* fills empty space */
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-    opacity: 1;
-}
-
-/* Dark overlay */
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-/* Text on top */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    color: white;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-}
-body {
-    overflow-x: hidden; /* prevents sideways scroll */
-}
-.hero-content h1 {
-    font-size: 3.5em;
-    letter-spacing: 2px;
-}
-
-.hero-content p {
-    font-size: 1.4em;
-    margin-top: 10px;
-    letter-spacing: 1px;
-}
-    </style>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header>
-        <nav>
-            <div class="logo">Tridalworld</div>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#design-services">Design</a></li>
-                <li><a href="#pure-kitchen">Kitchen</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#contact" class="cta-button cta-animate">Wholesale Inquiry</a>
-        </nav>
-    </header>
-
-    <section id="home" class="hero">
-
-    <div class="slider">
-        <img src="mainlogo.png" class="slide active">
-        
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <img src="mainlogo.png" alt="Tridalworld Logo" id="hero-logo" class="logo-pulse">
     </div>
 
-    <div class="hero-content">
-        <h1 class="headline-animate">Tradinova Design Hub</h1>
-<p>Innovation | Trading | Design | Services</p>
-        <a href="#products" class="cta-button cta-animate">Explore Our Catalog</a>
-    </div>
-
-</section>
-
-    <section id="about" class="section">
-        <h2 class="section-title">🌐 About Tridalworld</h2>
-        <p>Tridalworld is a professionally managed, multi-category enterprise engaged in the import, wholesale distribution, and retail of electrical, electronic, lifestyle, household, and pure traditional kitchen products.</p>
-        <p>Along with product trading, the company offers advanced Fabric Design, CAD Drafting, Automation Design, and Architectural Design Support, making it a versatile and future-ready organization.</p>
-        <p>Tridalworld is proudly **GST-Registered & MSME-Certified**, ensuring compliance, reliability, and authenticity in every business process.</p>
-
-        <h3 style="color: #007bff; border: none; font-size: 1.5em; margin-top: 40px;">⭐ Why Customers Trust Tridalworld</h3>
-        <div class="grid-3 product-card-container">
-            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">✅</span><strong>GST & MSME Registered</strong></div>
-            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🤝</span>Ethical & Transparent Business Model</div>
-            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🔝</span>High-Quality Multi-Category Products</div>
-            <!-- <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🍃</span>100% Pure and Authentic Food Essentials</div> -->
-            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">🚚</span>Reliable Import and Distribution Network</div>
-            <div class="card" style="display: flex; align-items: center;"><span class="service-icon">📐</span>Professional Design & Engineering Services</div>
-        </div>
-
-        <div class="grid-3" style="margin-top: 60px;">
-            <div class="card">
-                <h3 style="display: flex; align-items: center;"><span class="service-icon">🎯</span>Vision</h3>
-                <p>To become a nationally trusted multi-category brand delivering innovation, purity, and reliability across products and design services—enhancing everyday living with quality and value.</p>
-            </div>
-            <div class="card" style="grid-column: span 2;">
-                <h3 style="display: flex; align-items: center;"><span class="service-icon">🚀</span>Mission</h3>
-                <ul style="list-style: disc; padding-left: 20px;">
-                    <li>To provide customers with a wide, reliable, and affordable range of products.</li>
-                    <li>To support retailers and wholesalers through transparent sourcing.</li>
-                    <li>To deliver professional-grade design services with accuracy and precision.</li>
-                    <li>To promote 100% pure, chemical-free Indian kitchen essentials.</li>
-                    <li>To maintain strong customer relationships through quick service.</li>
+    <!-- Main Content -->
+    <div id="mainContent" style="display: none;">
+        <!-- Header -->
+        <header id="header">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <span class="logo-accent">Tridal</span>world
+                </a>
+                
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#industrial">Industrial</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact" class="btn-primary">Get a Quote</a></li>
                 </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-overlay-static"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">Professional Wholesale Trading</span>
+                    <h1 class="hero-title">Empowering Your Business with <span class="text-gradient">Premium Electrical</span> Solutions</h1>
+                    <p class="hero-description">Your trusted partner for MCB, switch gears, LT panels, and home electrical instruments. Certified, reliable, and future-ready.</p>
+                    <div class="hero-actions">
+                        <a href="#products" class="btn-primary btn-large">View Catalog <i class="fas fa-arrow-right"></i></a>
+                        <a href="#contact" class="btn-secondary btn-large">Contact Sales</a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>100%</h3>
+                            <p>Certified Quality</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>PAN India</h3>
+                            <p>Delivery Network</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>GST/MSME</h3>
+                            <p>Registered</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="mainlogo.png" alt="Tridalworld Logo" class="hero-main-logo">
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="products" class="section">
-        <h2 class="section-title">🛍️ Our Product Portfolio</h2>
-        <div class="grid-3 product-card-container">
-            <div class="card product-card-1">
-                <h3 style="color: #007bff;">🟦 Electrical & Electronic Products</h3>
-                <ul><li>LED Bulbs & Strips</li><li>Switches & Sockets</li><li>Power Adapters & Chargers</li><li>Wires & Cables</li><li>Mini Fans & Appliances</li></ul>
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About <span class="text-gradient">Tridalworld</span></h2>
+                    <div class="divider"></div>
+                    <p class="section-subtitle">A multi-category enterprise delivering innovation, purity, and reliability.</p>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-content">
+                        <p class="lead-text">Tridalworld is a professionally managed enterprise engaged in the import, wholesale distribution, and retail of electrical instruments, electronic appliances, and advanced design services.</p>
+                        <p>We combine deep industry knowledge with modern technological solutions to offer MCBs, switch gears, LT panels, and reliable home electrical products.</p>
+                        
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                                <div class="feature-text">
+                                    <h4>GST & MSME Certified</h4>
+                                    <p>Ensuring compliance, reliability, and authenticity in every business process.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                                <div class="feature-text">
+                                    <h4>Ethical & Transparent</h4>
+                                    <p>Building strong customer relationships through a reliable import and distribution network.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-vision-cards">
+                        <div class="vision-card glass-card">
+                            <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                            <h3>Our Vision</h3>
+                            <p>To become a nationally trusted multi-category brand delivering innovation and reliability across electrical products and design services.</p>
+                        </div>
+                        <div class="vision-card glass-card mt-4">
+                            <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                            <h3>Our Mission</h3>
+                            <ul>
+                                <li>Provide reliable range of products.</li>
+                                <li>Support retailers & wholesalers.</li>
+                                <li>Deliver professional design services.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card product-card-2">
-                <h3 style="color: #ff7f00;">🟧 Mobile & Smart Accessories</h3>
-                <ul><li>Earbuds & Headphones</li><li>Bluetooth Speakers</li><li>Smart Watches</li><li>Power Banks</li><li>Mobile Holders</li></ul>
+        </section>
+
+        <!-- Retail Products Catalog -->
+        <section id="products" class="section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Product <span class="text-gradient">Portfolio</span></h2>
+                    <div class="divider center"></div>
+                </div>
+
+                <div class="grid-3 catalog-grid">
+                    <!-- 1 -->
+                    <div class="catalog-item" style="border-left: 5px solid #3b82f6;">
+                        <div class="cat-header-row">
+                            <div class="color-box" style="background:#3b82f6;"></div>
+                            <h3 style="color:#3b82f6; margin-bottom:0; font-size: 1.15rem;">Electrical & Electronic Products</h3>
+                        </div>
+                        <ul>
+                            <li>LED Bulbs & Strips</li>
+                            <li>Switches & Sockets</li>
+                            <li>Power Adapters & Chargers</li>
+                            <li>Wires & Cables</li>
+                            <li>Mini Fans & Appliances</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="catalog-item" style="border-left: 5px solid #f97316;">
+                        <div class="cat-header-row">
+                            <div class="color-box" style="background:#f97316;"></div>
+                            <h3 style="color:#f97316; margin-bottom:0; font-size: 1.15rem;">Mobile & Smart Accessories</h3>
+                        </div>
+                        <ul>
+                            <li>Earbuds & Headphones</li>
+                            <li>Bluetooth Speakers</li>
+                            <li>Smart Watches</li>
+                            <li>Power Banks</li>
+                            <li>Mobile Holders</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="catalog-item" style="border-left: 5px solid #22c55e;">
+                        <div class="cat-header-row">
+                            <div class="color-box" style="background:#22c55e;"></div>
+                            <h3 style="color:#22c55e; margin-bottom:0; font-size: 1.15rem;">Consumer Electronics</h3>
+                        </div>
+                        <ul>
+                            <li>Desk Lamps</li>
+                            <li>Portable Speakers</li>
+                            <li>Rechargeable Bulbs</li>
+                            <li>Smart Gadgets</li>
+                            <li>Digital Clocks</li>
+                        </ul>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="catalog-item" style="border-left: 5px solid #8b5cf6;">
+                        <div class="cat-header-row">
+                            <div class="color-box" style="background:#8b5cf6;"></div>
+                            <h3 style="color:#8b5cf6; margin-bottom:0; font-size: 1.15rem;">Musical Instruments & Accessories</h3>
+                        </div>
+                        <ul>
+                            <li>Acoustic Guitars</li>
+                            <li>Traditional Indian Instruments</li>
+                            <li>Musical Accessories</li>
+                            <li>Electronic Musical Toys</li>
+                        </ul>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="catalog-item" style="border-left: 5px solid #a0522d;">
+                        <div class="cat-header-row">
+                            <div class="color-box" style="background:#a0522d;"></div>
+                            <h3 style="color:#a0522d; margin-bottom:0; font-size: 1.15rem;">Household & Daily-Use Products</h3>
+                        </div>
+                        <ul>
+                            <li>Water Bottles</li>
+                            <li>Lunch Boxes</li>
+                            <li>Storage Containers</li>
+                            <li>Cleaning Essentials</li>
+                            <li>Basic Home Utility Tools</li>
+                        </ul>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="catalog-item" style="border-left: 5px solid #ef4444;">
+                        <div class="cat-header-row">
+                            <div class="color-box" style="background:#ef4444;"></div>
+                            <h3 style="color:#ef4444; margin-bottom:0; font-size: 1.15rem;">Battery-Operated & Educational Toys</h3>
+                        </div>
+                        <ul>
+                            <li>Battery Cars & Bikes</li>
+                            <li>Musical Toys</li>
+                            <li>Remote Control Toys</li>
+                            <li>Learning & Educational Toys</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="card product-card-3">
-                <h3 style="color: #28a745;">🟩 Consumer Electronics</h3>
-                <ul><li>Desk Lamps</li><li>Portable Speakers</li><li>Rechargeable Bulbs</li><li>Smart Gadgets</li><li>Digital Clocks</li></ul>
+        </section>
+
+        <!-- Industrial Products Catalog -->
+        <section id="industrial" class="section dark-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="badge badge-accent">Core Focus</span>
+                    <h2 class="section-title text-white">Industrial & <span class="text-gradient">Heavy Electricals</span></h2>
+                    <div class="divider center"></div>
+                </div>
+
+                <div class="grid-2 product-showcase">
+                    <div class="showcase-card glass-card">
+                        <div class="showcase-image">
+                            <img src="image100.jpeg" alt="LT Switchgear Panel">
+                            <div class="image-overlay">
+                                <a href="#contact" class="btn-primary">Enquire Now</a>
+                            </div>
+                        </div>
+                        <div class="showcase-content">
+                            <h3><i class="fas fa-server"></i> LT Switchgear & Control Panels</h3>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check-circle"></i> Custom LT Switchgear Panels</li>
+                                <li><i class="fas fa-check-circle"></i> Electrical Control Panels</li>
+                                <li><i class="fas fa-check-circle"></i> Distribution Boards (DBs)</li>
+                                <li><i class="fas fa-check-circle"></i> MCB / MCCB Panels</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="showcase-card glass-card">
+                        <div class="showcase-image">
+                            <img src="Lt.jpeg" alt="Earthing & Lightning Protection">
+                            <div class="image-overlay">
+                                <a href="#contact" class="btn-primary">Enquire Now</a>
+                            </div>
+                        </div>
+                        <div class="showcase-content">
+                            <h3><i class="fas fa-bolt"></i> Earthing & Lightning Protection</h3>
+                            <ul class="product-features">
+                                <li><i class="fas fa-check-circle"></i> GI & Pure Copper Rods</li>
+                                <li><i class="fas fa-check-circle"></i> Advanced Lightning Arresters</li>
+                                <li><i class="fas fa-check-circle"></i> Black Fill & Backfill Compounds</li>
+                                <li><i class="fas fa-check-circle"></i> Standard Earthing Electrodes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card product-card-4">
-                <h3 style="color: #6f42c1;">🟪 Musical Instruments & Accessories</h3>
-                <ul><li>Acoustic Guitars</li><li>Traditional Indian Instruments</li><li>Musical Accessories</li><li>Electronic Musical Toys</li></ul>
+        </section>
+
+        <!-- Design Services Section -->
+        <section id="services" class="section bg-light">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Design & <span class="text-gradient">Engineering Services</span></h2>
+                    <div class="divider center"></div>
+                    <p class="section-subtitle">We provide advanced, reliable, and precise design solutions for industries, developers, and manufacturers.</p>
+                </div>
+
+                <div class="services-wrapper">
+                    <div class="service-pill"><i class="fas fa-drafting-compass"></i> 2D & 3D CAD Drawing</div>
+                    <div class="service-pill"><i class="fas fa-microchip"></i> Automation Design & Control</div>
+                    <div class="service-pill"><i class="fas fa-building"></i> Architectural Design Support</div>
+                    <div class="service-pill"><i class="fas fa-cube"></i> 3D Visualization Assistance</div>
+                    <div class="service-pill"><i class="fas fa-clipboard-list"></i> Product Concept Planning</div>
+                    <div class="service-pill"><i class="fas fa-layer-group"></i> Fabric Design & Layout</div>
+                </div>
             </div>
-            <div class="card product-card-5">
-                <h3 style="color: #8b4513;">🟫 Household & Daily-Use Products</h3>
-                <ul><li>Water Bottles</li><li>Lunch Boxes</li><li>Storage Containers</li><li>Cleaning Essentials</li><li>Basic Home Utility Tools</li></ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section dark-section contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info glass-card">
+                        <h2>Let's <span class="text-gradient">Connect</span></h2>
+                        <p class="mb-4">Get in touch for wholesale trades, custom switchgear panel quotes, or partnership inquiries.</p>
+                        
+                        <div class="info-block">
+                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h4>Office Address</h4>
+                                <p>4D/141 Awash Vikas, Naubasta, Kanpur</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-block">
+                            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>8707615640</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-block">
+                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:adityadwivedi4701@gmail.com">adityadwivedi4701@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-block">
+                            <div class="info-icon"><i class="fas fa-user-tie"></i></div>
+                            <div>
+                                <h4>Proprietor</h4>
+                                <p>Mr. Aditya Dwivedi</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container glass-card">
+                        <h3>Send us a message</h3>
+                        <form id="contactForm" class="styled-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" placeholder="John Doe" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="+91 9876543210" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="john@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Requirements</label>
+                                <textarea id="message" rows="4" placeholder="I am looking for MCBs or custom LT Panels..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn btn-primary btn-block">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            
+                            <div id="msg" class="form-message"></div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="card product-card-6">
-                <h3 style="color: #dc3545;">🟥 Battery-Operated & Educational Toys</h3>
-                <ul><li>Battery Cars & Bikes</li><li>Musical Toys</li><li>Remote Control Toys</li><li>Learning & Educational Toys</li></ul>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container text-center">
+                <a href="#" class="footer-logo">
+                    <span class="logo-accent">Tridal</span>world
+                </a>
+                <p class="footer-tagline">Premium Wholesale Electrical Instruments & Design Services</p>
+                
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Tridalworld. All rights reserved. | GST & MSME Certified</p>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section id="design-services" class="section">
-        <h2 class="section-title">🎨 Design & Engineering Services</h2>
-        <p style="text-align: center;">Tridalworld provides advanced, reliable, and precise design solutions for industries, developers, and manufacturers:</p>
-
-        <ul class="grid-3 product-card-container" style="list-style: none; padding: 0;">
-            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">🧵</span>Fabric Design & Layout Planning</h4></li>
-            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">✏️</span>2D & 3D CAD Drawing</h4></li>
-            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">⚙️</span>Automation Design & Control Planning</h4></li>
-            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">🏛️</span>Architectural Design Support</h4></li>
-            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">👓</span>3D Visualization Assistance</h4></li>
-            <li class="card"><h4 style="display: flex; align-items: center;"><span class="service-icon">📋</span>Product Concept & Design Documentation</h4></li>
-        </ul>
-        <p style="text-align: center; margin-top: 30px; font-weight: bold;">These services ensure accuracy, modern standards, and professional output for every project.</p>
-    </section>
-
-   
-<section id="industrial" class="section">
-    <h2 class="section-title">⚡ Industrial Electrical Products</h2>
-
-    <div class="grid-3 product-card-container">
-
-        <div class="card product-card-1">
-            <img src="image100.jpeg"
-     style="width:100%; height:250px; object-fit:cover; border-radius:4px; margin-bottom:15px;">
-
-            <h3>🔌 LT Switchgear Panel</h3>
-            <ul>
-                <li>LT Switchgear Panel</li>
-                <li>Electrical Control Panels</li>
-                <li>Distribution Boards</li>
-                <li>MCB / MCCB Panels</li>
-            </ul>
-        </div>
-
-        <div class="card product-card-2">
-              <img src="Lt.jpeg"
-     style="width:100%; height:250px; object-fit:cover; border-radius:4px; margin-bottom:15px;">
-            <h3>⚡ Earthing & Lightning Protection</h3>
-            <ul>
-                <li>GI Copper Rod</li>
-                <li>Lightning Arrester</li>
-                <li>Black Fill Compound</li>
-                <li>Earthing Electrode</li>
-            </ul>
-        </div>
-
+        </footer>
     </div>
-</section>
-            <!-- <div class="grid-3 product-card-container">
-                <div class="card">
-                    <h3 style="display: flex; align-items: center; color: #8b4513;"><span class="service-icon">🌾</span>Premium Spices (Masala)</h3>
-                    <ul><li>Turmeric Powder</li><li>Coriander Powder</li><li>Red Chilli Powder</li><li>Garam Masala</li><li>Cumin Seeds (Jeera)</li><li>Black Salt</li></ul>
-                </div>
-                <div class="card">
-                    <h3 style="display: flex; align-items: center; color: #8b4513;"><span class="service-icon">🍚</span>Food Grains & Essentials</h3>
-                    <ul><li>Wheat Flour (Atta)</li><li>Pure Rice, Kala Namak Rice</li><li>Arhar Dal, Moong Dal, Chana Dal</li><li>Bajra (Pearl Millet)</li></ul>
-                </div>
-                <div class="card">
-                    <h3 style="display: flex; align-items: center; color: #8b4513;"><span class="service-icon">🍯</span>Traditional Pure Products</h3>
-                    <ul><li>Desi Ghee</li><li>Mustard Oil</li><li>Jaggery (Gud)</li><li>Jaggery-Based Products</li><li>Mango Papad</li></ul>
-                </div>
-            </div> -->
-        </div>
-    </section>
 
-    <section id="contact" class="section" style="text-align: center;">
-        <h2 class="section-title">📞 Contact Tridalworld</h2>
-        <div class="grid-3" style="grid-template-columns: 1fr 1fr; max-width: 800px; margin: 0 auto; text-align: left;">
-            <div class="card">
-                <h3>Company Information</h3>
-                <p><strong>Company Name:</strong> Tridalworld</p>
-                <p><strong>Proprietor:</strong> Mr. Aditya Dwivedi</p>
-                <p><strong>Contact Number:</strong> 8707615640</p>
-                <p><strong>Email:</strong> <a href="mailto:adi@gmail.com">adityadwivedi4701@gmail.com</a></p>
-                <p><strong>Office Address:</strong> 4D/141 Awash Vikas, Naubasta, Kanpur</p>
-            </div>
-            <div class="card">
-                <h3>Send Us a Message</h3>
-                <form id = "contactForm" style="display: flex; flex-direction: column; gap: 10px;">
-                    <input id="name" type="text" placeholder="Your Name" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                    <input id="phone" type="tel" placeholder="Your Phone Number" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                    <input id="email" type="email" placeholder="Your Email" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                    <textarea id="message" placeholder="Your Message / Inquiry" rows="4" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
-                    <button type="submit" class="cta-button" style="padding: 10px; border: none; cursor: pointer; background: #007bff; color: white;">Submit Inquiry</button>
-                    <p id="msg"></p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Tridalworld. All rights reserved. | GST & MSME Certified</p>
-    </footer>
-
-<p id="msg"></p>
-
-<script src="script.js"></script>
-
-
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
 </body>
-</html
+</html>
