@@ -877,6 +877,225 @@ ul {
 }
 
 /* =========================================
+   EXPERTISE SECTION
+   ========================================= */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.expertise-card {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.expertise-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
+.expertise-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 16px;
+    margin-top: 16px;
+}
+
+.expertise-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    color: var(--text-main);
+}
+
+.expertise-card p {
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+/* =========================================
+   WHY CHOOSE SECTION
+   ========================================= */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.why-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.why-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.why-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 12px;
+}
+
+.why-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    color: var(--text-main);
+}
+
+.why-card p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.why-list {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.why-list li {
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.why-list i {
+    color: var(--primary);
+    font-size: 0.75rem;
+}
+
+/* =========================================
+   WHY US SECTION
+   ========================================= */
+.why-us-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: start;
+}
+
+.why-us-text h3 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    color: var(--text-main);
+}
+
+.why-us-text p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.9;
+}
+
+.values-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.value-item {
+    display: flex;
+    gap: 20px;
+}
+
+.value-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.value-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.value-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.why-us-highlights {
+    position: sticky;
+    top: 120px;
+}
+
+.highlight-box {
+    border-left: 4px solid var(--accent) !important;
+}
+
+.highlight-box h4 {
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+    color: var(--text-main);
+}
+
+.highlight-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight-box ul li {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.highlight-box ul li i {
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+/* =========================================
    RESPONSIVE DESIGN
    ========================================= */
 @media (max-width: 1024px) {
@@ -986,5 +1205,25 @@ ul {
     .service-pill {
         width: 100%;
         justify-content: center;
+    }
+
+    /* Expertise & Why Sections Mobile */
+    .expertise-grid,
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-us-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .why-us-highlights {
+        position: static;
+        top: auto;
+    }
+
+    .expertise-grid {
+        grid-template-columns: 1fr;
     }
 }
